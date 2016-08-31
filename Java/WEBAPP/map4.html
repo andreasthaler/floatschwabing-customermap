@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Geocoding service</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+#floating-panel {
+  position: absolute;
+  top: 10px;
+  left: 25%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: 'Roboto','sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
+}
+
+    </style>
+  </head>
+  <body>
+    <div id="floating-panel">
+      <input id="address" type="textbox" value="Sydney, NSW">
+      <input id="submit" type="button" value="Geocode">
+    </div>
+    <div id="map"></div>
+    <script src="data.json"></script>
+    <script>
+
+var markers = [];
+
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 8,
+    center: {lat: -34.397, lng: 150.644}
+  });
+  var geocoder = new google.maps.Geocoder();
+
+ for (var i = 0; i < data.count; i++) {
+          var dataPhoto = data.photos[i];
+          var customerPLZ = dataPhoto.customerPLZ;
+          var address = customerPLZ.toString() + ', Germany';
+          geocodeAddress(geocoder, map, address);
+        }
+	var markerCluster = new MarkerClusterer(map, markers, {imagePath: '../images/m'});
+  
+  //document.getElementById('submit').addEventListener('click', function() {
+  //  geocodeAddress(geocoder, map, '81929');
+  //});
+}
+
+function geocodeAddress(geocoder, resultsMap, plz) {
+  var address = plz;
+  geocoder.geocode({'address': address}, function(results, status) {
+    if (status === google.maps.GeocoderStatus.OK) {
+      resultsMap.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+        map: resultsMap,
+        position: results[0].geometry.location
+      });
+      markers.push(marker);
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAU6TTrT6qw3wOy5kNhXPI8i_uKlSzuOA4&signed_in=true&callback=initMap"
+        async defer></script>
+  </body>
+</html>

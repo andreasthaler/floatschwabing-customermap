@@ -1,0 +1,22 @@
+var data = { "count": 10,
+ "photos": [{"customerPLZ": 27932, "longitude": -64.404945, "latitude": -32.202924}
+,
+{"customerPLZ": 27932, "longitude": -64.404945, "latitude": -32.202924}
+,
+{"customerPLZ": 27932, "longitude": -74.404945, "latitude": -32.202924}
+,
+{"customerPLZ": 27932, "longitude": -84.404945, "latitude": -32.202924}
+,
+{"customerPLZ": 27932, "longitude": -94.404945, "latitude": -32.202924}
+,
+{"customerPLZ": 27932, "longitude": -54.404945, "latitude": -32.202924}
+,
+{"customerPLZ": 27932, "longitude": -44.404945, "latitude": -32.202924}
+,
+{"customerPLZ": 27932, "longitude": -34.404945, "latitude": -32.202924}
+,
+{"customerPLZ": 27932, "longitude": -24.404945, "latitude": -32.202924}
+,
+{"customerPLZ": 27932, "longitude": -14.404945, "latitude": -32.202924}
+]}
+
